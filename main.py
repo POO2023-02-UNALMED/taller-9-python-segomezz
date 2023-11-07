@@ -1,18 +1,13 @@
 from tkinter import Tk, Button, Entry, StringVar
-
-# Configuración ventana principal
 root = Tk()
 root.title("Calculadora POO")
 root.resizable(0,0)
 root.geometry("502x300")
-
-digito = "" #Variable concatenadora de digitos
-screen = StringVar() #Variable para la muestra en el display
+digito = "" 
+screen = StringVar() 
 operacion = []
 operadores = []
-
-
-def calculo(digitos):  # Función para agregar
+def calculo(digitos):  
     operacion.append(digitos)
     if digitos == "+" or digitos == "-" or digitos == "*" or digitos == "/":
         operadores.append(digitos)
@@ -20,20 +15,13 @@ def calculo(digitos):  # Función para agregar
         global digito
         digito = digito + str(digitos)
         screen.set(digito)
-
-
-def result(): #Funcion para calcular la operacion
+def result(): 
     global digito
     total = str(eval(digito))
     screen.set(total)
     digito = ""
-
-# Configuración pantalla de salida
-
 pantalla = Entry(root, width=40, bg="black", fg="white", borderwidth=0, font=("arial", 18, "bold"), textvariable= screen)
 pantalla.grid(row=0, column=0, columnspan=200, padx=1, pady=0)
-
-# Configuración botones
 boton_1 = Button(root, text="1", width=9, height=3, bg="white", fg="red", borderwidth=0, cursor="hand2", command=lambda: calculo(1)).grid(row=1, column=0, padx=1, pady=1)
 boton_2 = Button(root, text="2", width=9, height=3, bg="white", fg="red", borderwidth=0, cursor="hand2", command=lambda: calculo(2)).grid(row=1, column=1, padx=1, pady=1)
 boton_3 = Button(root, text="3", width=9, height=3, bg="white", fg="red", borderwidth=0, cursor="hand2", command=lambda: calculo(3)).grid(row=1, column=2, padx=1, pady=1)
@@ -49,12 +37,4 @@ boton_mas = Button(root, text="+", width=9, height=3, bg="deep sky blue", fg="bl
 boton_menos = Button(root, text="-", width=9, height=3, bg="deep sky blue", fg="black", borderwidth=0, cursor="hand2", command=lambda: calculo("-")).grid(row=2, column=3, padx=1, pady=1)
 boton_multiplicacion = Button(root, text="*",  width=9, height=3, bg="deep sky blue", fg="black", borderwidth=0, cursor="hand2", command=lambda: calculo("*")).grid(row=3, column=3, padx=1, pady=1)
 boton_division = Button(root, text="/", width=9, height=3, bg="deep sky blue", fg="black", borderwidth=0, cursor="hand2", command=lambda: calculo("/")).grid(row=4, column=3, padx=1, pady=1)
-
-
-
-
-
-
-
-
 root.mainloop()
